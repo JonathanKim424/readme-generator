@@ -2,7 +2,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generateRM = require('./src/readme-template.js');
-const { generateMarkdown } = require('./utils/generateMarkdown.js');
 
 
 // TODO: Create an array of questions for user input
@@ -10,22 +9,22 @@ const questions = [
     {
         type: 'input',
         name: 'title',
-        message: 'What is the title of your project?'
+        message: 'What is the title of your project? '
     },
     {
         type: 'input',
         name: 'description',
-        message: 'Please provide a short description of your project'
+        message: 'Please provide a short description of your project: '
     },
     {
         type: 'input',
         name: 'installation',
-        message: 'What are the steps required to install your project?'
+        message: 'What are the steps required to install your project? '
     },
     {
         type: 'input',
         name: 'usage',
-        message: 'Provide instructions and examples for use'
+        message: 'Provide instructions and examples for use: '
     },
     {
         type: 'input',
@@ -43,20 +42,20 @@ const questions = [
         message: 'Provide test instructions/examples'
     },
     {
-        type: 'checkbox',
+        type: 'list',
         name: 'license',
         message: 'Please select license',
-        choices: ['choice1', 'choice2', 'choice3']
+        choices: ['GNU AGPLv3', 'GNU GPLv3', 'GNU LGPLv3', 'Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'Boost Software License 1.0', 'The Unlicense', 'No License']
     },
     {
         type: 'input',
         name: 'github',
-        message: 'GitHub username?'
+        message: 'What is your GitHub username?'
     },
     {
         type: 'input',
         name: 'email',
-        message: 'Email?'
+        message: 'What is your email?'
     }
 ];
 
