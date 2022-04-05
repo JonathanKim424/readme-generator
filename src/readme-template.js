@@ -1,7 +1,8 @@
 const {generateMarkdown, renderLicenseBadge} = require('../utils/generateMarkdown.js');
 
 module.exports = (fileName, data) => {
-    return `# ${fileName} ${renderLicenseBadge(data.license)}
+    return `
+# ${fileName} ${renderLicenseBadge(data.license)}
 
 ## Description
 
@@ -42,10 +43,10 @@ ${data.test}
 
 ## Questions
 
-GitHub Username: ${data.github}
-GitHub Profile: https://github.com/${data.github}
+GitHub: ${data.github} @ https://github.com/${data.github}
 
 If you have any questions, please reach out to me via email.
+
 ${data.email}
     `;
 };

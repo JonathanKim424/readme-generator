@@ -1,6 +1,6 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
-const fs = require('fs');
+const {writeFile} = require('./utils/generateFiles.js');
 const generateRM = require('./src/readme-template.js');
 
 
@@ -60,35 +60,23 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-const writeToFile = (fileName, data) => {
-    return new Promise((resolve) => {
-        resolve(generateRM(fileName, data));
-    }) 
-    .then(fileContent => {
-        return new Promise((resolve, reject) => {
-            fs.writeFile('./dist/' + fileName + '.md', fileContent, err => {
-                if (err) {
-                    reject(err);
-                    return;
-                }
-                resolve({
-                    ok: true,
-                    message: 'File created!'
-                });
-            });
-        });
-    })
-    .then(writeFileResponse => {
-        console.log(writeFileResponse);
-    });
+const createFile = response => {
+    const {title: fileName, ...answer} = response;
+    const fileContent = generateRM(fileName, answer);
+    const data = {fileName:fileName, fileContent:fileContent};
+    return data;
 };
 
 // TODO: Create a function to initialize app
 const init = () => {
     return inquirer.prompt(questions)
-        .then(answers => {
-            const {title: fileName, ...data} = answers;
-            writeToFile(fileName, data);
+        .then(createFile)
+        .then(data => {
+            const {fileName, fileContent} = data;
+            return writeFile(fileName, fileContent);
+        })
+        .catch(err => {
+            console.log(err);
         });
 };
 
