@@ -9,7 +9,15 @@ const questions = [
     {
         type: 'input',
         name: 'title',
-        message: 'What is the title of your project? '
+        message: 'What is the title of your project? (Required) ',
+        validate: titleInput => {
+            if (titleInput) {
+                return true;
+            } else {
+                console.log('Please enter a title!');
+                return false;
+            }
+        }
     },
     {
         type: 'input',
@@ -69,6 +77,10 @@ const createFile = response => {
 
 // TODO: Create a function to initialize app
 const init = () => {
+    console.log('Respond to the following prompts to generate a readme file.');
+    console.log('The project title is required, but the rest of the prompts can be left blank to generate a template.');
+    console.log('The readme will be generated in the /dist folder using the project title as the name.');
+    console.log('Additionally a HTML file will be generated to provide a preview of the readme.');
     return inquirer.prompt(questions)
         .then(createFile)
         .then(data => {
