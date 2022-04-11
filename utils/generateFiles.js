@@ -1,6 +1,7 @@
 const fs = require('fs');
 const {marked} = require('marked');
 
+// creates an HTML preview based on the readme text generated
 const writeHTML = fileContent => {
     return new Promise((resolve, reject) => {
         const html = marked.parse(fileContent);
@@ -17,6 +18,8 @@ const writeHTML = fileContent => {
     });
 };
 
+// creates the readme file given the raw readme text and assigns the name of the file as the title of the readme project
+// then passes raw readme text to writeHTML()
 const writeFile = (fileName, fileContent) => {
     return new Promise((resolve, reject) => {
         fs.writeFile('./dist/' + fileName + '.md', fileContent, err => {

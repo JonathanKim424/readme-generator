@@ -68,6 +68,8 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
+// obtains output from inquirer.prompt(questions)
+// destructures data and sends to generateRM to create raw text for readme
 const createFile = response => {
     const {title: fileName, ...answer} = response;
     const fileContent = generateRM(fileName, answer);
@@ -81,6 +83,9 @@ const init = () => {
     console.log('The project title is required, but the rest of the prompts can be left blank to generate a template.');
     console.log('The readme will be generated in the /dist folder using the project title as the name.');
     console.log('Additionally a HTML file will be generated to provide a preview of the readme.');
+    // runs inquirer given the questions array created above
+    // sends results to createFile()
+    // destructures output from createFile then sends to writeFile() from generateFiles.js in /utils
     return inquirer.prompt(questions)
         .then(createFile)
         .then(data => {

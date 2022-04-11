@@ -1,5 +1,7 @@
 const {generateMarkdown, renderLicenseBadge} = require('../utils/generateMarkdown.js');
 
+// generates raw text for the readme file creation
+// references generateMarkdown.js for the implementation of the license badge and markdown text
 module.exports = (fileName, data) => {
     return `
 # ${fileName} ${renderLicenseBadge(data.license)}
