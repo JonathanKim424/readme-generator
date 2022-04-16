@@ -17,6 +17,9 @@ To use, simply run "node index" in the command line from the root folder. The ap
 
 ![Application Screenshot](./assets/images/application-screenshot.jpg?raw=tru "Application Screenshot")
 
+Video of App:
+https://drive.google.com/file/d/1Wu8sggfuPlyNdzbOOJTp9NM3q6XXAKq6/view?usp=sharing
+
 ## Credits
 Made by Jonathan Kim
 
